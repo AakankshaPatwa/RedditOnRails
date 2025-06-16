@@ -1,7 +1,7 @@
-class Subreddit < ApplicationRecord
+class Post < ApplicationRecord
     extend FriendlyId
     friendly_id :title, use: :slugged
 
-    has_many :posts
+    belongs_to :subreddit
     belongs_to :user
 end

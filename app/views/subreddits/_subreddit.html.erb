@@ -1,17 +1,11 @@
-<div id="<%= dom_id subreddit %>">
-  <p>
-    <strong>Title:</strong>
-    <%= subreddit.title %>
-  </p>
+<%= link_to subreddit do %>
+  <div id="<%= dom_id subreddit %>">
+    <h3>
+      <%= subreddit.title %>
+    </h3>
 
-  <p>
-    <strong>Body:</strong>
-    <%= subreddit.body %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= subreddit.user_id %>
-  </p>
-
-</div>
+    <p>
+      <%= subreddit.body %>
+    </p>
+  </div>
+<% end %>

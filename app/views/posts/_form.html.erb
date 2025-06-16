@@ -1,10 +1,10 @@
-<%= form_with(model: subreddit) do |form| %>
-  <% if subreddit.errors.any? %>
+<%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(subreddit.errors.count, "error") %> prohibited this subreddit from being saved:</h2>
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
       <ul>
-        <% subreddit.errors.each do |error| %>
+        <% post.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -22,7 +22,11 @@
   </div>
 
   <div>
-    <%= form.number_field :user_id, value: current_user.id, type: "hidden" %>
+    <%= form.number_field :user_id, value: current_user.id, type: "hidden"  %>
+  </div>
+
+  <div>
+    <%= form.number_field :subreddit_id, value: @subreddit.id, type: "hidden" %>
   </div>
 
   <div>

@@ -11,7 +11,7 @@
 :root {
   --bg: #121212; /* dark background */
   --text: #e0e0e0; /* light text */
-  --accent: #ff4500; /* optional: like Reddit orange */
+  --accent: #e4d93d; /* optional: like Reddit orange */
   --accent-hover: #ff784e;
   --border: #333;
 }
