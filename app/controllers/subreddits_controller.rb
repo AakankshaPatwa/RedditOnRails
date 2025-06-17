@@ -8,6 +8,7 @@ class SubredditsController < ApplicationController
 
   # GET /subreddits/1 or /subreddits/1.json
   def show
+    @membership = Membership.new
     @posts = @subreddit.posts
   end
 
@@ -19,6 +20,29 @@ class SubredditsController < ApplicationController
   # GET /subreddits/1/edit
   def edit
   end
+
+  def my_subreddits
+    unless current_user
+      redirect_to new_user_session_path, alert: "You need to sign in first."
+      return
+    end
+    @memberships = current_user.memberships.includes(:subreddit)
+  end
+
+  def search
+    if params[:title_search].present?
+      @subreddits = Subreddit.where("title ILIKE ?", "%#{params[:title_search]}%")
+    else
+      @subreddits = []
+    end
+  
+    respond_to do |format|
+      format.turbo_stream do 
+        render turbo_stream: turbo_stream.update("search_results", partial: "subreddits/search_results", locals: { subreddits: @subreddits })
+      end
+      format.html { render :index }
+    end
+  end  
 
   # POST /subreddits or /subreddits.json
   def create

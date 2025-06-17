@@ -1,0 +1,17 @@
+<% if @memberships.any? %>
+  <aside>
+    <h2>My Subreddits</h2>
+    <ul>
+      <% @memberships.each do |membership| %>
+        <% subreddit = membership.subreddit %>
+        <% if subreddit %>
+          <li><%= link_to subreddit.title, subreddit_path(subreddit) %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </aside>
+<% else %>
+  <p>You’re not a member of any subreddits yet.</p>
+<% end %>
+
+<%= link_to "New subreddit", new_subreddit_path, class: "btn btn-primary" %>

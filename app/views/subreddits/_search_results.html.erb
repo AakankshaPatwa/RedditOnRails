@@ -1,0 +1,32 @@
+<style>
+  .search_result{
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+    text-decoration: none;
+    display: block;
+  }
+
+  .search_result:hover{
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  }
+
+  .search_result h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+</style>
+
+<% subreddits.each do |subreddit| %>
+  <%= link_to subreddit, class: "search_result" do %>
+    R/<%= subreddit.title %>
+  <% end %>
+<% end %>
+
+
+
