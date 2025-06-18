@@ -13,6 +13,7 @@
 # gem "pg"
 #
 default: &default
+  url: <%= ENV["DATABASE_URL"] %>
   adapter: postgresql
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
@@ -22,6 +23,7 @@ default: &default
 
 development:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: reddit_on_rails_development
 
   # The specified database role being used to connect to PostgreSQL.
@@ -81,6 +83,7 @@ test:
 production:
   primary: &primary_production
     <<: *default
+    url: <%= ENV["DATABASE_URL"] %>
     database: reddit_on_rails_production
     username: reddit_on_rails
     password: <%= ENV["REDDIT_ON_RAILS_DATABASE_PASSWORD"] %>
